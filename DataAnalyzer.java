@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileReader;
 
 public class DataAnalyzer{
 
@@ -49,10 +48,18 @@ public class DataAnalyzer{
         return arr;
 }
 
-    public static int[] fileToArray(int length, Scanner file){
+    public static int[] fileToIntArray(int length, Scanner file){
         int[] arr = new int[length];
         for(int i=0; i<length; i++){
             arr[i]=file.nextInt();
+        }
+        return arr;
+
+    }
+    public static String[] fileToStringArray(int length, Scanner file){
+        String[] arr = new String[length];
+        for(int i=0; i<length; i++){
+            arr[i]=file.nextLine();
         }
         return arr;
 
@@ -65,7 +72,7 @@ public class DataAnalyzer{
             File f= new File("numbers.txt");
             Scanner input = new Scanner(f);
             
-            int[] newArray = fileToArray(100, input);
+            int[] newArray = fileToIntArray(100, input);
             System.out.println("Finding number 17 with searchlist: " + searchlist(newArray,17));
             System.out.println("Finding number 17 with binary: " + binarylist(newArray,17));
             System.out.println("Reversed List: ");
