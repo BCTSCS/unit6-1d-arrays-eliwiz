@@ -73,7 +73,7 @@ public class DataAnalyzer{
             Scanner input = new Scanner(f);
             
             int[] newArray = fileToIntArray(100, input);
-            System.out.println("Finding number 17 with searchlist: " + searchlist(newArray,17));
+            System.out.println("Finding number 17 with searrrahlist: " + searchlist(newArray,17));
             System.out.println("Finding number 17 with binary: " + binarylist(newArray,17));
             System.out.println("Reversed List: ");
             for (int num : newArray){
