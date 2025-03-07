@@ -1,10 +1,11 @@
+package Data;
 import java.io.IOException;
 import java.io.File;
 import java.util.*;
 
 public class fileOperator{
 
-    public ArrayList<Integer> toStringList(Scanner file){
+    public ArrayList<String> toStringList(Scanner file){
         ArrayList<String> list = new ArrayList<String>();
         while (file.hasNext()){
             list.add(file.nextLine());
@@ -47,30 +48,20 @@ public class fileOperator{
 
     //analytical: Find Albums by Artist
 
-    public static String[] findAlbumByArtist(String artist, String[] arr, String[] album){
-        int count = 0;
-        String artistIndex = "";
+    public static String[] findAlbumByArtist(String artist, String[] artists, String[] album) {
+        ArrayList<String> albumList = new ArrayList<>();
 
-        for(int i = 0; i < arr.length; i++){
-            if (arr[i].equals(artist)){
-                count++;
-                artistIndex= artistIndex + i+";";
+        for (int i = 0; i < artists.length; i++) { 
+            if (artists[i].equals(artist)) {
+                albumList.add(album[i]);
             }
         }
 
-        String[] albums = new String[count];
-
-        String specificAlbum="";
-        for (int i = 0; i<count; i++){
-            specificAlbum = artistIndex.substring(0,specificAlbum.indexOf(';'));
-
-        }
-
-        return count;
+        return albumList.toArray(new String[0]); 
     }
 
-    //Statistical: Most Common Genre 
-    public static String mostCommonGenre(String[] arr){
+    //Statistical: Most Common 
+    public static String mostCommon(String[] arr){
         String visited= "";
         String maxWord="";
         int maxNum=0;
@@ -106,14 +97,20 @@ public class fileOperator{
             File f= new File("artists.txt");
             Scanner artistInput = new Scanner(f);
 
-            String[] artistArray = fileToStringArray(20, artistInput);
-            for (String num : artistArray){
-                System.out.print(num + "; ");
-            }
+            String[] artistArray = fileToStringArray(498, artistInput);
 
-            File k= new File("albums.txt");
-            Scanner albumInput = new Scanner(k);
-            String[] albumArray = fileToStringArray(20, albumInput);
+            File f2= new File("albums.txt");
+            Scanner albumInput = new Scanner(f2);
+
+            String[] albumArray = fileToStringArray(498, albumInput);
+
+
+           String[] k = findAlbumByArtist("The Beatles", artistArray, albumArray);
+
+           for (String object : k){
+            System.out.println(object);
+           }
+
 
 
         }catch(IOException e ){
